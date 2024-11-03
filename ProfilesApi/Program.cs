@@ -12,7 +12,7 @@ namespace ProfilesApi
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<ProfilesContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLAuthApi")//,
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLProfilesApi")//,
                 /*x => x.MigrationsAssembly("Migrations")*/));
 
             builder.Services.AddTransient<ProfileRepository, ProfileRepository>();
