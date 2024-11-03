@@ -1,8 +1,10 @@
 ﻿using FastEndpoints;
+using ProfilesApi.Features.Profiles.Domain;
+using ProfilesApi.Features.Profiles.Repositories;
 
 namespace ProfilesApi.Features.Profiles.Patient
 {
-    public class CreatePatientProfileEndpoint : Endpoint<CreatePatientProfileRequest, CreatePatientProfileResponse>
+    public class CreatePatientProfileEndpoint(ProfileRepository profRep) : Endpoint<CreatePatientProfileRequest, CreatePatientProfileResponse>
     {
         public override void Configure()
         {
@@ -10,9 +12,19 @@ namespace ProfilesApi.Features.Profiles.Patient
             AllowAnonymous();
         }
 
-        public override Task HandleAsync(CreatePatientProfileRequest request, CancellationToken cancellationToken)
+        public override async Task HandleAsync(CreatePatientProfileRequest request, CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
+            var profile = new PatientProfile()
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                PhoneNumber = request.PhoneNumber,
+                DateOfBirth = request.DateOfBirth,
+                MiddleName = request.MiddleName,
+                Id = Guid.NewGuid()
+            };
+
+            await profRep.CreatePatientProfileAsync(profile, cancellationToken);
         }
     }
 }

@@ -1,4 +1,7 @@
 using FastEndpoints;
+using Microsoft.EntityFrameworkCore;
+using ProfilesApi.Data;
+using ProfilesApi.Features.Profiles.Repositories;
 
 namespace ProfilesApi
 {
@@ -7,11 +10,17 @@ namespace ProfilesApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<ProfilesContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLAuthApi")//,
+                /*x => x.MigrationsAssembly("Migrations")*/));
+
+            builder.Services.AddTransient<ProfileRepository, ProfileRepository>();
+
             builder.Services.AddFastEndpoints();
             var app = builder.Build();
 
             app.UseFastEndpoints();
-            //app.MapGet("/", () => "Hello World!");
 
             app.Run();
         }

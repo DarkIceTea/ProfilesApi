@@ -3,9 +3,9 @@ using ProfilesApi.Features.Profiles.Domain;
 
 namespace ProfilesApi.Data
 {
-    public class ProfilesContext : DbContext
+    public class ProfilesContext(DbContextOptions options) : DbContext(options)
     {
-        DbSet<PatientProfile> patientProfiles;
+        public DbSet<PatientProfile> PatientProfiles { get; set; }
 
     }
 }
