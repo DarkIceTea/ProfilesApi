@@ -4,7 +4,7 @@ using ProfilesApi.Features.Profiles.Repositories;
 
 namespace ProfilesApi.Features.Profiles.Patient
 {
-    public class CreatePatientProfileEndpoint(ProfileRepository profRep) : Endpoint<CreatePatientProfileRequest, CreatePatientProfileResponse>
+    public class CreatePatientProfileEndpoint(ProfileRepository profRep) : Endpoint<CreatePatientProfileRequest>
     {
         public override void Configure()
         {
