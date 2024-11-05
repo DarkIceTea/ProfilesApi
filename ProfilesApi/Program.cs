@@ -1,7 +1,7 @@
 using FastEndpoints;
 using Microsoft.EntityFrameworkCore;
 using ProfilesApi.Data;
-using ProfilesApi.Features.Profiles.Repositories;
+using ProfilesApi.Repositories;
 
 namespace ProfilesApi
 {

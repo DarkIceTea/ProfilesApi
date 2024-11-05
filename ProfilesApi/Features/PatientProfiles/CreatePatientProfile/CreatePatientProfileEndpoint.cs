@@ -1,6 +1,6 @@
 ﻿using FastEndpoints;
 using ProfilesApi.Features.Profiles.Domain;
-using ProfilesApi.Features.Profiles.Repositories;
+using ProfilesApi.Repositories;
 
 namespace ProfilesApi.Features.Profiles.Patient
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProfilesApi.Features.Profiles.Domain;
+using ProfilesApi.Domain;
 
 namespace ProfilesApi.Data
 {

@@ -1,7 +1,7 @@
 ﻿using ProfilesApi.Data;
-using ProfilesApi.Features.Profiles.Domain;
+using ProfilesApi.Domain;
 
-namespace ProfilesApi.Features.Profiles.Repositories
+namespace ProfilesApi.Repositories
 {
     public class ProfileRepository(ProfilesContext context)
     {

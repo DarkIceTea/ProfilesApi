@@ -1,10 +1,11 @@
-﻿namespace ProfilesApi.Features.Profiles.Patient
+﻿namespace ProfilesApi.Domain
 {
-    public class CreatePatientProfileRequest
+    public class PatientProfile
     {
+        public Guid Id { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
-        public string MiddleName { get; set; } = null!;
+        public string? MiddleName { get; set; }
         public required string PhoneNumber { get; set; }
         public DateOnly DateOfBirth { get; set; }
     }
