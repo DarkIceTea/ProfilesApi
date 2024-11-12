@@ -10,5 +10,9 @@ namespace ProfilesApi.Repositories
             await context.PatientProfiles.AddAsync(profile, cancellationToken);
             await context.SaveChangesAsync();
         }
+        public async Task<PatientProfile> GetPatientProfileById(Guid id, CancellationToken cancellationToken)
+        {
+            return await context.PatientProfiles.FindAsync(id, cancellationToken);
+        }
     }
 }
