@@ -11,9 +11,18 @@ namespace ProfilesApi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //builder.Services.AddDbContext<ProfilesContext>(options =>
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLProfilesApi")//,
+            //    /*x => x.MigrationsAssembly("Migrations")*/));
+
+            //var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
+            //builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));
+
+            //builder.Services.AddDbContext<ProfilesContext>(options =>
+            //options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? ""));
+
             builder.Services.AddDbContext<ProfilesContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLProfilesApi")//,
-                /*x => x.MigrationsAssembly("Migrations")*/));
+            options.UseMongoDB("mongodb://localhost:27017/", "ProfilesApi"));
 
             builder.Services.AddTransient<ProfileRepository, ProfileRepository>();
 
