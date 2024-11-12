@@ -3,17 +3,18 @@ using ProfilesApi.Repositories;
 
 namespace ProfilesApi.Features.PatientProfiles.GetPatientProfile
 {
-    public class GetPatientProfileEndpoint(ProfileRepository profRep) : Endpoint<GetPatientProfileRequest, GetPatientProfileResponse>
+    public class GetPatientProfileEndpoint(ProfileRepository profRep) : EndpointWithoutRequest<GetPatientProfileResponse>
     {
         public override void Configure()
         {
-            Get("/Profiles/Patient/Get");
+            Get("/Profiles/Patient/Get/{UserGuid}");
             AllowAnonymous();
         }
 
-        public override async Task HandleAsync(GetPatientProfileRequest request, CancellationToken cancellationToken)
+        public override async Task HandleAsync(CancellationToken cancellationToken)
         {
-            var profile = await profRep.GetPatientProfileById(request.Id, cancellationToken);
+            var userGuid = Route<Guid>("UserGuid");
+            var profile = await profRep.GetPatientProfileById(userGuid, cancellationToken);
             var response = new GetPatientProfileResponse()
             {
                 DateOfBirth = profile.DateOfBirth,
