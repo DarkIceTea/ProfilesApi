@@ -14,7 +14,7 @@ namespace ProfilesApi.Features.PatientProfiles.GetPatientProfile
         public override async Task HandleAsync(CancellationToken cancellationToken)
         {
             var userGuid = Route<Guid>("UserGuid");
-            var profile = await profRep.GetPatientProfileById(userGuid, cancellationToken);
+            var profile = await profRep.GetPatientProfileByIdAsync(userGuid, cancellationToken);
             var response = new GetPatientProfileResponse()
             {
                 DateOfBirth = profile.DateOfBirth,
