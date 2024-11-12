@@ -28,5 +28,11 @@ namespace ProfilesApi.Repositories
 
             return oldProfile;
         }
+        public async Task DeletePatientProfileAsync(Guid guid, CancellationToken cancellationToken)
+        {
+            var profile = await context.PatientProfiles.FindAsync(guid, cancellationToken);
+            context.PatientProfiles.Remove(profile);
+            await context.SaveChangesAsync(cancellationToken);
+        }
     }
 }
