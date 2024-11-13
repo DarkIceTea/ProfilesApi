@@ -10,13 +10,16 @@ namespace ProfilesApi.Repositories
             await context.PatientProfiles.AddAsync(profile, cancellationToken);
             await context.SaveChangesAsync();
         }
-        public async Task<PatientProfile> GetPatientProfileByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<PatientProfile> GetPatientProfileByIdAsync(Guid guid, CancellationToken cancellationToken)
         {
-            return await context.PatientProfiles.FindAsync(id, cancellationToken);
+            var profile = await context.PatientProfiles.FindAsync(guid, cancellationToken);
+            if (profile is null)
+                throw new InvalidOperationException($"PatientProfile with ID {guid} not found.");
+            return profile;
         }
         public async Task<PatientProfile> UpdatePatientProfileAsync(Guid guid, PatientProfile profile, CancellationToken cancellationToken)
         {
-            var oldProfile = await context.PatientProfiles.FindAsync(guid, cancellationToken);
+            var oldProfile = await GetPatientProfileByIdAsync(guid, cancellationToken);
 
             oldProfile.DateOfBirth = profile.DateOfBirth;
             oldProfile.PhoneNumber = profile.PhoneNumber;
@@ -30,7 +33,7 @@ namespace ProfilesApi.Repositories
         }
         public async Task DeletePatientProfileAsync(Guid guid, CancellationToken cancellationToken)
         {
-            var profile = await context.PatientProfiles.FindAsync(guid, cancellationToken);
+            var profile = await GetPatientProfileByIdAsync(guid, cancellationToken);
             context.PatientProfiles.Remove(profile);
             await context.SaveChangesAsync(cancellationToken);
         }
