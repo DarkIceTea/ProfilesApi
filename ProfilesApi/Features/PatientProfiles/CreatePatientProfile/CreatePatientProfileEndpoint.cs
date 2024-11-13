@@ -1,9 +1,8 @@
 ﻿using FastEndpoints;
 using ProfilesApi.Domain;
-using ProfilesApi.Features.PatientProfiles.CreatePatientProfile;
 using ProfilesApi.Repositories;
 
-namespace ProfilesApi.Features.Profiles.Patient
+namespace ProfilesApi.Features.PatientProfiles.CreatePatientProfile
 {
     public class CreatePatientProfileEndpoint(ProfileRepository profRep) : Endpoint<CreatePatientProfileRequest>
     {
