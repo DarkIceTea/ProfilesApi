@@ -26,6 +26,7 @@ namespace ProfilesApi.Features.Profiles.Patient
             };
 
             await profRep.CreatePatientProfileAsync(profile, cancellationToken);
+            await SendOkAsync(cancellationToken);
         }
     }
 }
