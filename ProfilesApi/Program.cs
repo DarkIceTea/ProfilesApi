@@ -1,6 +1,7 @@
 using FastEndpoints;
 using Microsoft.EntityFrameworkCore;
 using ProfilesApi.Data;
+using ProfilesApi.ExceptionHandlers;
 using ProfilesApi.Repositories;
 
 namespace ProfilesApi
@@ -26,8 +27,15 @@ namespace ProfilesApi
 
             builder.Services.AddTransient<ProfileRepository, ProfileRepository>();
 
+            builder.Services.AddProblemDetails();
+            builder.Services.AddExceptionHandler<InvalidOperationExceptionToProblemDetailsHandler>();
+            builder.Services.AddExceptionHandler<DefaultExceptionToProblemDetailsHandler>();
+
             builder.Services.AddFastEndpoints();
             var app = builder.Build();
+
+            //app.UseStatusCodePages();
+            app.UseExceptionHandler();
 
             app.UseFastEndpoints();
 
