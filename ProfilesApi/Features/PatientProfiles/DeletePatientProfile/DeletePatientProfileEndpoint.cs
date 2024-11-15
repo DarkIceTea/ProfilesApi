@@ -14,6 +14,7 @@ namespace ProfilesApi.Features.PatientProfiles.DeletePatientProfile
         public override async Task HandleAsync(CancellationToken cancellationToken)
         {
             var userGuid = Route<Guid>("UserGuid");
+            Logger.LogInformation("Get user guid {0}", userGuid);
             await profRep.DeletePatientProfileAsync(userGuid, cancellationToken);
 
             await SendOkAsync(cancellationToken);
