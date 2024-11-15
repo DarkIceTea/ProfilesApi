@@ -8,13 +8,13 @@ namespace ProfilesApi.ExceptionHandlers
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
         {
 
-            httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+            httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
             await httpContext.Response.WriteAsJsonAsync(new ProblemDetails
             {
                 Title = "An error occurred",
                 Detail = exception.Message,
                 Type = exception.GetType().Name,
-                Status = StatusCodes.Status500InternalServerError
+                Status = StatusCodes.Status400BadRequest
             }, cancellationToken: cancellationToken);
 
             return true;
