@@ -8,7 +8,7 @@ namespace ProfilesApi.Features.PatientProfiles.UpdatePatientProfile
     {
         public override void Configure()
         {
-            Put("/Profiles/Patient/Update/{UserGuid}");
+            Put("/patient-profile/{UserGuid}");
             AllowAnonymous();
         }
 

@@ -8,7 +8,7 @@ namespace ProfilesApi.Features.PatientProfiles.CreatePatientProfile
     {
         public override void Configure()
         {
-            Post("/Profiles/Patient/Create");
+            Post("/patient-profiles");
             AllowAnonymous();
         }
 

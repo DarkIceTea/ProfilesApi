@@ -7,7 +7,7 @@ namespace ProfilesApi.Features.PatientProfiles.DeletePatientProfile
     {
         public override void Configure()
         {
-            Delete("/Profiles/Patient/Delete/{UserGuid}");
+            Delete("/patient-profile/{UserGuid}");
             AllowAnonymous();
         }
 

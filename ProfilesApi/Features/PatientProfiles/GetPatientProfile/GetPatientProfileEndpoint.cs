@@ -7,7 +7,7 @@ namespace ProfilesApi.Features.PatientProfiles.GetPatientProfile
     {
         public override void Configure()
         {
-            Get("/Profiles/Patient/Get/{UserGuid}");
+            Get("/patient-profile/{UserGuid}");
             AllowAnonymous();
         }
 
