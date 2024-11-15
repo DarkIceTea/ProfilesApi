@@ -34,7 +34,6 @@ namespace ProfilesApi
             builder.Services.AddFastEndpoints();
             var app = builder.Build();
 
-            //app.UseStatusCodePages();
             app.UseExceptionHandler();
 
             app.UseFastEndpoints();
