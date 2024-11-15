@@ -15,6 +15,7 @@ namespace ProfilesApi.Features.PatientProfiles.UpdatePatientProfile
         public override async Task HandleAsync(UpdatePatientProfileRequest request, CancellationToken cancellationToken)
         {
             var userGuid = Route<Guid>("UserGuid");
+            Logger.LogInformation("Get user guid {0}", userGuid.ToString());
             var requestProfile = new PatientProfile()
             {
                 DateOfBirth = request.DateOfBirth,

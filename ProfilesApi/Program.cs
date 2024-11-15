@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ProfilesApi.Data;
 using ProfilesApi.ExceptionHandlers;
 using ProfilesApi.Repositories;
+using Serilog;
 
 namespace ProfilesApi
 {
@@ -11,6 +12,12 @@ namespace ProfilesApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(builder.Configuration)
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             //builder.Services.AddDbContext<ProfilesContext>(options =>
             //    options.UseSqlServer(builder.Configuration.GetConnectionString("MSSQLProfilesApi")//,
