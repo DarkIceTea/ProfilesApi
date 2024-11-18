@@ -9,13 +9,13 @@ namespace ProfilesApi.Features.PatientProfiles.UpdatePatientProfile
         public override void Configure()
         {
             Put("/patient-profile/{UserGuid}");
+            PreProcessor<UpdatePatientProfileLoggingPreProcessor<UpdatePatientProfileRequest>>();
             AllowAnonymous();
         }
 
         public override async Task HandleAsync(UpdatePatientProfileRequest request, CancellationToken cancellationToken)
         {
             var userGuid = Route<Guid>("UserGuid");
-            Logger.LogInformation("Get user guid {0}", userGuid.ToString());
             var requestProfile = new PatientProfile()
             {
                 DateOfBirth = request.DateOfBirth,

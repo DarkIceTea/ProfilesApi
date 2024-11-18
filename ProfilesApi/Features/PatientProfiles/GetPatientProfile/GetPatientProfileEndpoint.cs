@@ -8,13 +8,13 @@ namespace ProfilesApi.Features.PatientProfiles.GetPatientProfile
         public override void Configure()
         {
             Get("/patient-profile/{UserGuid}");
+            PreProcessor<GetPatientProfileLoggingPreProcessor<EmptyRequest>>();
             AllowAnonymous();
         }
 
         public override async Task HandleAsync(CancellationToken cancellationToken)
         {
             var userGuid = Route<Guid>("UserGuid");
-            Logger.LogInformation("Get user guid {0}", userGuid.ToString());
             var profile = await profRep.GetPatientProfileByIdAsync(userGuid, cancellationToken);
             var response = new GetPatientProfileResponse()
             {
