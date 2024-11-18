@@ -8,6 +8,7 @@ namespace ProfilesApi.Features.PatientProfiles.DeletePatientProfile
         public override void Configure()
         {
             Delete("/patient-profile/{UserGuid}");
+            PreProcessor<DeletePatientProfileLoggingPreProcessor<EmptyRequest>>();
             AllowAnonymous();
         }
 
