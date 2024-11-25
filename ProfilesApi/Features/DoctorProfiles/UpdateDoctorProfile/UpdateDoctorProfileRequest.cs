@@ -1,8 +1,7 @@
-﻿namespace ProfilesApi.Domain
+﻿namespace ProfilesApi.Features.DoctorProfiles.UpdateDoctorProfile
 {
-    public class DoctorProfile
+    public class UpdateDoctorProfileRequest
     {
-        public Guid Id { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
         public string? MiddleName { get; set; }

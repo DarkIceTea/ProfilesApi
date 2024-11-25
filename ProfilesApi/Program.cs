@@ -33,6 +33,7 @@ namespace ProfilesApi
             options.UseMongoDB("mongodb://localhost:27017/", "ProfilesApi")); //TODO: move to appsetings
 
             builder.Services.AddTransient<ProfileRepository, ProfileRepository>();
+            builder.Services.AddTransient<DoctorRepository, DoctorRepository>();
 
             builder.Services.AddProblemDetails();
             builder.Services.AddExceptionHandler<InvalidOperationExceptionToProblemDetailsHandler>();
