@@ -30,7 +30,7 @@ namespace ProfilesApi
             //options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? ""));
 
             builder.Services.AddDbContext<ProfilesContext>(options =>
-            options.UseMongoDB("mongodb://localhost:27017/", "ProfilesApi")); //TODO: move to appsetings
+            options.UseMongoDB("mongodb://mongodb:27017/", "ProfilesApi")); //TODO: move to appsetings
 
             builder.Services.AddTransient<ProfileRepository, ProfileRepository>();
             builder.Services.AddTransient<DoctorRepository, DoctorRepository>();

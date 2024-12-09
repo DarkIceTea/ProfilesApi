@@ -1,0 +1,11 @@
+services:
+  profilesapi:
+    image: ${DOCKER_REGISTRY-}profilesapi
+    build:
+      context: .
+      dockerfile: ProfilesApi/Dockerfile
+  mongodb:
+    restart: always
+    image: "mongodb/mongodb-community-server:latest"
+    ports: 
+     - 27018:27017
