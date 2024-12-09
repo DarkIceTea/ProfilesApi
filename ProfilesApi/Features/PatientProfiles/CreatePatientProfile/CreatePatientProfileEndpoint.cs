@@ -9,6 +9,7 @@ namespace ProfilesApi.Features.PatientProfiles.CreatePatientProfile
         public override void Configure()
         {
             Post("/patient-profiles");
+            PreProcessor<CreatePatientProfileLoggingPreProcessor<CreatePatientProfileRequest>>();
             AllowAnonymous();
         }
 

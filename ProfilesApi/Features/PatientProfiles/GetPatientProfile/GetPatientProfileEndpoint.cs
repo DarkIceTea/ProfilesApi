@@ -8,6 +8,7 @@ namespace ProfilesApi.Features.PatientProfiles.GetPatientProfile
         public override void Configure()
         {
             Get("/patient-profile/{UserGuid}");
+            PreProcessor<GetPatientProfileLoggingPreProcessor<EmptyRequest>>();
             AllowAnonymous();
         }
 

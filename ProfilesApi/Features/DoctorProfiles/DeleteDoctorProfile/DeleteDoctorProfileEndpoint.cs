@@ -1,21 +1,21 @@
 ﻿using FastEndpoints;
+using ProfilesApi.Features.PatientProfiles.DeletePatientProfile;
 using ProfilesApi.Repositories;
 
-namespace ProfilesApi.Features.PatientProfiles.DeletePatientProfile
+namespace ProfilesApi.Features.DoctorProfiles.DeleteDoctorProfile
 {
-    public class DeletePatientProfileEndpoint(ProfileRepository profRep) : EndpointWithoutRequest
+    public class DeleteDoctorProfileEndpoint(DoctorRepository docRep) : EndpointWithoutRequest
     {
         public override void Configure()
         {
-            Delete("/patient-profile/{UserGuid}");
+            Delete("/doctor-profile/{UserGuid}");
             PreProcessor<DeletePatientProfileLoggingPreProcessor<EmptyRequest>>();
             AllowAnonymous();
         }
-
         public override async Task HandleAsync(CancellationToken cancellationToken)
         {
             var userGuid = Route<Guid>("UserGuid");
-            await profRep.DeletePatientProfileAsync(userGuid, cancellationToken);
+            await docRep.DeleteDoctorProfileAsync(userGuid, cancellationToken);
 
             await SendOkAsync(cancellationToken);
         }
